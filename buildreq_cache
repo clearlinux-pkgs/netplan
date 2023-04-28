@@ -1,0 +1,11 @@
+0.106
+bash-completion-dev
+glib-dev
+pandoc
+pkgconfig(bash-completion)
+pkgconfig(cmocka)
+pkgconfig(glib-2.0)
+pkgconfig(libsystemd)
+pkgconfig(systemd)
+pkgconfig(yaml-0.1)
+yaml-dev

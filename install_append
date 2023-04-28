@@ -1,0 +1,8 @@
+# Undo the weird symlink we added in install_prepend so we don't end up installing it
+rm %{buildroot}/usr/usr
+
+# Now recreate the symlink as it was intended
+ln -sf ../../../libexec/netplan/generate %{buildroot}/usr/lib/systemd/system-generators/netplan
+
+# Also remove the symlink /lib/netplan/generate, which I don't even know where it came from
+rm -rf %{buildroot}/lib

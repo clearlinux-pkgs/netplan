@@ -1,0 +1,8 @@
+libc.so.6
+libgcc_s.so.1
+libgio-2.0.so.0
+libglib-2.0.so.0
+libgobject-2.0.so.0
+libsystemd.so.0
+libuuid.so.1
+libyaml-0.so.2
