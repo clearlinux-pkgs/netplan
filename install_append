@@ -6,3 +6,8 @@ ln -sf ../../../libexec/netplan/generate %{buildroot}/usr/lib/systemd/system-gen
 
 # Also remove the symlink /lib/netplan/generate, which I don't even know where it came from
 rm -rf %{buildroot}/lib
+
+# Make sure we don't create and install a /usr/sbin directory from this package -- it's a symlink in the base filesystem
+mkdir -p %{buildroot}/usr/bin
+mv %{buildroot}/usr/sbin/* %{buildroot}/usr/bin/
+rmdir %{buildroot}/usr/sbin

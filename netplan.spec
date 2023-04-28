@@ -5,7 +5,7 @@
 #
 Name     : netplan
 Version  : 0.106
-Release  : 1
+Release  : 2
 URL      : https://github.com/canonical/netplan/archive/0.106/netplan-0.106.tar.gz
 Source0  : https://github.com/canonical/netplan/archive/0.106/netplan-0.106.tar.gz
 Summary  : Network configuration tool using YAML
@@ -131,7 +131,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1682723295
+export SOURCE_DATE_EPOCH=1682724703
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -170,6 +170,11 @@ ln -sf ../../../libexec/netplan/generate %{buildroot}/usr/lib/systemd/system-gen
 
 # Also remove the symlink /lib/netplan/generate, which I don't even know where it came from
 rm -rf %{buildroot}/lib
+
+# Make sure we don't create and install a /usr/sbin directory from this package -- it's a symlink in the base filesystem
+mkdir -p %{buildroot}/usr/bin
+mv %{buildroot}/usr/sbin/* %{buildroot}/usr/bin/
+rmdir %{buildroot}/usr/sbin
 ## install_append end
 
 %files
@@ -178,7 +183,7 @@ rm -rf %{buildroot}/lib
 
 %files bin
 %defattr(-,root,root,-)
-/usr/sbin/netplan
+/usr/bin/netplan
 
 %files data
 %defattr(-,root,root,-)
