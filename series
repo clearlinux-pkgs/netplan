@@ -1,2 +1,3 @@
 0001-Loosen-Python-deps.patch
 0002-Disable-tests.patch
+0003-Find-generate-under-usr-libexec-instead-of-lib.patch

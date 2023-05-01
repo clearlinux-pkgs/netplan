@@ -5,7 +5,7 @@
 #
 Name     : netplan
 Version  : 0.106
-Release  : 2
+Release  : 3
 URL      : https://github.com/canonical/netplan/archive/0.106/netplan-0.106.tar.gz
 Source0  : https://github.com/canonical/netplan/archive/0.106/netplan-0.106.tar.gz
 Summary  : Network configuration tool using YAML
@@ -17,6 +17,7 @@ Requires: netplan-lib = %{version}-%{release}
 Requires: netplan-libexec = %{version}-%{release}
 Requires: netplan-license = %{version}-%{release}
 Requires: netplan-man = %{version}-%{release}
+Requires: pypi-netifaces
 BuildRequires : bash-completion-dev
 BuildRequires : buildreq-meson
 BuildRequires : glib-dev
@@ -34,6 +35,7 @@ BuildRequires : yaml-dev
 %define debug_package %{nil}
 Patch1: 0001-Loosen-Python-deps.patch
 Patch2: 0002-Disable-tests.patch
+Patch3: 0003-Find-generate-under-usr-libexec-instead-of-lib.patch
 
 %description
 netplan reads network configuration from /etc/netplan/*.yaml which are written by administrators,
@@ -125,13 +127,14 @@ man components for the netplan package.
 cd %{_builddir}/netplan-0.106
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1682724703
+export SOURCE_DATE_EPOCH=1682966258
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
