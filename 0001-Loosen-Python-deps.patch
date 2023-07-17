@@ -18,9 +18,9 @@ index 50bd1b5b192e..b5979a8bc4b9 100644
  pyflakes = find_program('pyflakes-3', 'pyflakes3', required: false)
  pycodestyle = find_program('pycodestyle-3', 'pycodestyle', 'pep8', required: false)
 -pytest = find_program('pytest-3', 'pytest3')  # also requires the pytest-cov plugin
--pycoverage = find_program('python3-coverage')
+-pycoverage = find_program('coverage-3', 'python3-coverage')
 +pytest = find_program('pytest-3', 'pytest3', 'pytest', required: false)  # also requires the pytest-cov plugin
-+pycoverage = find_program('python3-coverage', required: false)
++pycoverage = find_program('coverage-3', 'python3-coverage', required: false)
  pandoc = find_program('pandoc', required: false)
  find = find_program('find')
  

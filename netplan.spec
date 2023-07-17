@@ -4,13 +4,13 @@
 # Using build pattern: meson
 #
 Name     : netplan
-Version  : 0.106
-Release  : 4
-URL      : https://github.com/canonical/netplan/archive/0.106/netplan-0.106.tar.gz
-Source0  : https://github.com/canonical/netplan/archive/0.106/netplan-0.106.tar.gz
+Version  : 0.106.1
+Release  : 5
+URL      : https://github.com/canonical/netplan/archive/0.106.1/netplan-0.106.1.tar.gz
+Source0  : https://github.com/canonical/netplan/archive/0.106.1/netplan-0.106.1.tar.gz
 Summary  : Network configuration tool using YAML
 Group    : Development/Tools
-License  : GPL-3.0
+License  : GPL-3.0 GPL-3.0-only
 Requires: netplan-bin = %{version}-%{release}
 Requires: netplan-data = %{version}-%{release}
 Requires: netplan-lib = %{version}-%{release}
@@ -37,7 +37,6 @@ BuildRequires : yaml-dev
 %define debug_package %{nil}
 Patch1: 0001-Loosen-Python-deps.patch
 Patch2: 0002-Disable-tests.patch
-Patch3: 0003-Find-generate-under-usr-libexec-instead-of-lib.patch
 
 %description
 netplan reads network configuration from /etc/netplan/*.yaml which are written by administrators,
@@ -125,18 +124,17 @@ man components for the netplan package.
 
 
 %prep
-%setup -q -n netplan-0.106
-cd %{_builddir}/netplan-0.106
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
+%setup -q -n netplan-0.106.1
+cd %{_builddir}/netplan-0.106.1
+%patch -P 1 -p1
+%patch -P 2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1683158492
+export SOURCE_DATE_EPOCH=1689629055
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -252,5 +250,9 @@ rmdir %{buildroot}/usr/sbin
 /usr/share/man/man8/netplan-dbus.8
 /usr/share/man/man8/netplan-generate.8
 /usr/share/man/man8/netplan-get.8
+/usr/share/man/man8/netplan-info.8
+/usr/share/man/man8/netplan-ip.8
+/usr/share/man/man8/netplan-rebind.8
 /usr/share/man/man8/netplan-set.8
+/usr/share/man/man8/netplan-status.8
 /usr/share/man/man8/netplan-try.8

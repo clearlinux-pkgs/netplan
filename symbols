@@ -21,6 +21,8 @@ libnetplan.so.0.0:g_string_free_to_file
 libnetplan.so.0.0:get_global_network
 libnetplan.so.0.0:get_unspecified_address
 libnetplan.so.0.0:is_route_present
+libnetplan.so.0.0:is_route_rule_present
+libnetplan.so.0.0:is_string_in_array
 libnetplan.so.0.0:is_wireguard_key
 libnetplan.so.0.0:netplan_backend_name
 libnetplan.so.0.0:netplan_clear_netdefs
