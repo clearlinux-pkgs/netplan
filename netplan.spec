@@ -4,10 +4,10 @@
 # Using build pattern: meson
 #
 Name     : netplan
-Version  : 0.106.1
-Release  : 5
-URL      : https://github.com/canonical/netplan/archive/0.106.1/netplan-0.106.1.tar.gz
-Source0  : https://github.com/canonical/netplan/archive/0.106.1/netplan-0.106.1.tar.gz
+Version  : 0.107
+Release  : 6
+URL      : https://github.com/canonical/netplan/archive/0.107/netplan-0.107.tar.gz
+Source0  : https://github.com/canonical/netplan/archive/0.107/netplan-0.107.tar.gz
 Summary  : Network configuration tool using YAML
 Group    : Development/Tools
 License  : GPL-3.0 GPL-3.0-only
@@ -17,6 +17,8 @@ Requires: netplan-lib = %{version}-%{release}
 Requires: netplan-libexec = %{version}-%{release}
 Requires: netplan-license = %{version}-%{release}
 Requires: netplan-man = %{version}-%{release}
+Requires: netplan-python = %{version}-%{release}
+Requires: netplan-python3 = %{version}-%{release}
 Requires: PyYAML
 Requires: pypi-netifaces
 Requires: pypi-rich
@@ -30,7 +32,9 @@ BuildRequires : pkgconfig(glib-2.0)
 BuildRequires : pkgconfig(libsystemd)
 BuildRequires : pkgconfig(systemd)
 BuildRequires : pkgconfig(yaml-0.1)
-BuildRequires : pypi-pytest
+BuildRequires : pypi(cffi)
+BuildRequires : pypi(pytest)
+BuildRequires : python3-dev
 BuildRequires : yaml-dev
 # Suppress stripping binaries
 %define __strip /bin/true
@@ -123,9 +127,27 @@ Group: Default
 man components for the netplan package.
 
 
+%package python
+Summary: python components for the netplan package.
+Group: Default
+Requires: netplan-python3 = %{version}-%{release}
+
+%description python
+python components for the netplan package.
+
+
+%package python3
+Summary: python3 components for the netplan package.
+Group: Default
+Requires: python3-core
+
+%description python3
+python3 components for the netplan package.
+
+
 %prep
-%setup -q -n netplan-0.106.1
-cd %{_builddir}/netplan-0.106.1
+%setup -q -n netplan-0.107
+cd %{_builddir}/netplan-0.107
 %patch -P 1 -p1
 %patch -P 2 -p1
 
@@ -134,7 +156,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1689629055
+export SOURCE_DATE_EPOCH=1692291862
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -194,27 +216,27 @@ rmdir %{buildroot}/usr/sbin
 /usr/share/dbus-1/system-services/io.netplan.Netplan.service
 /usr/share/dbus-1/system.d/io.netplan.Netplan.conf
 /usr/share/netplan/netplan.script
-/usr/share/netplan/netplan/__init__.py
-/usr/share/netplan/netplan/_features.py
-/usr/share/netplan/netplan/cli/__init__.py
-/usr/share/netplan/netplan/cli/commands/__init__.py
-/usr/share/netplan/netplan/cli/commands/apply.py
-/usr/share/netplan/netplan/cli/commands/generate.py
-/usr/share/netplan/netplan/cli/commands/get.py
-/usr/share/netplan/netplan/cli/commands/info.py
-/usr/share/netplan/netplan/cli/commands/ip.py
-/usr/share/netplan/netplan/cli/commands/migrate.py
-/usr/share/netplan/netplan/cli/commands/set.py
-/usr/share/netplan/netplan/cli/commands/sriov_rebind.py
-/usr/share/netplan/netplan/cli/commands/status.py
-/usr/share/netplan/netplan/cli/commands/try_command.py
-/usr/share/netplan/netplan/cli/core.py
-/usr/share/netplan/netplan/cli/ovs.py
-/usr/share/netplan/netplan/cli/sriov.py
-/usr/share/netplan/netplan/cli/utils.py
-/usr/share/netplan/netplan/configmanager.py
-/usr/share/netplan/netplan/libnetplan.py
-/usr/share/netplan/netplan/terminal.py
+/usr/share/netplan/netplan_cli/__init__.py
+/usr/share/netplan/netplan_cli/_features.py
+/usr/share/netplan/netplan_cli/cli/__init__.py
+/usr/share/netplan/netplan_cli/cli/commands/__init__.py
+/usr/share/netplan/netplan_cli/cli/commands/apply.py
+/usr/share/netplan/netplan_cli/cli/commands/generate.py
+/usr/share/netplan/netplan_cli/cli/commands/get.py
+/usr/share/netplan/netplan_cli/cli/commands/info.py
+/usr/share/netplan/netplan_cli/cli/commands/ip.py
+/usr/share/netplan/netplan_cli/cli/commands/migrate.py
+/usr/share/netplan/netplan_cli/cli/commands/set.py
+/usr/share/netplan/netplan_cli/cli/commands/sriov_rebind.py
+/usr/share/netplan/netplan_cli/cli/commands/status.py
+/usr/share/netplan/netplan_cli/cli/commands/try_command.py
+/usr/share/netplan/netplan_cli/cli/core.py
+/usr/share/netplan/netplan_cli/cli/ovs.py
+/usr/share/netplan/netplan_cli/cli/sriov.py
+/usr/share/netplan/netplan_cli/cli/state.py
+/usr/share/netplan/netplan_cli/cli/utils.py
+/usr/share/netplan/netplan_cli/configmanager.py
+/usr/share/netplan/netplan_cli/terminal.py
 
 %files dev
 %defattr(-,root,root,-)
@@ -256,3 +278,10 @@ rmdir %{buildroot}/usr/sbin
 /usr/share/man/man8/netplan-set.8
 /usr/share/man/man8/netplan-status.8
 /usr/share/man/man8/netplan-try.8
+
+%files python
+%defattr(-,root,root,-)
+
+%files python3
+%defattr(-,root,root,-)
+/usr/lib/python3*/*
