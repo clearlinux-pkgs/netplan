@@ -1,5 +1,0 @@
-# Something in the build is trying to symlink up 3 levels when it should be doing 4
-# /builddir/build/BUILDROOT/netplan-0.106-1.x86_64/usr/lib/systemd/system-generators/../../../usr/libexec/netplan/generate
-# Make sure to rm the symlink in install_append so it doesn't end up in a package!
-mkdir -p %{buildroot}/usr
-ln -s ../usr %{buildroot}/usr/usr
