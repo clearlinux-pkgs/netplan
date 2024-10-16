@@ -8,6 +8,8 @@ libnetplan.so.1:_netplan_netdef_get_bond_mode
 libnetplan.so.1:_netplan_netdef_get_critical
 libnetplan.so.1:_netplan_netdef_get_delay_virtual_functions_rebind
 libnetplan.so.1:_netplan_netdef_get_embedded_switch_mode
+libnetplan.so.1:_netplan_netdef_get_gateway4
+libnetplan.so.1:_netplan_netdef_get_gateway6
 libnetplan.so.1:_netplan_netdef_get_optional
 libnetplan.so.1:_netplan_netdef_get_sriov_vlan_filter
 libnetplan.so.1:_netplan_netdef_get_vlan_id
@@ -42,6 +44,7 @@ libnetplan.so.1:netplan_error_clear
 libnetplan.so.1:netplan_error_code
 libnetplan.so.1:netplan_error_message
 libnetplan.so.1:netplan_get_id_from_nm_filepath
+libnetplan.so.1:netplan_netdef_get_accept_ra
 libnetplan.so.1:netplan_netdef_get_backend
 libnetplan.so.1:netplan_netdef_get_bond_link
 libnetplan.so.1:netplan_netdef_get_bridge_link
@@ -63,6 +66,8 @@ libnetplan.so.1:netplan_netdef_has_match
 libnetplan.so.1:netplan_netdef_match_interface
 libnetplan.so.1:netplan_netdef_write_yaml
 libnetplan.so.1:netplan_parser_clear
+libnetplan.so.1:netplan_parser_get_error_count
+libnetplan.so.1:netplan_parser_get_flags
 libnetplan.so.1:netplan_parser_load_keyfile
 libnetplan.so.1:netplan_parser_load_nullable_fields
 libnetplan.so.1:netplan_parser_load_nullable_overrides
@@ -71,6 +76,7 @@ libnetplan.so.1:netplan_parser_load_yaml_from_fd
 libnetplan.so.1:netplan_parser_load_yaml_hierarchy
 libnetplan.so.1:netplan_parser_new
 libnetplan.so.1:netplan_parser_reset
+libnetplan.so.1:netplan_parser_set_flags
 libnetplan.so.1:netplan_state_clear
 libnetplan.so.1:netplan_state_dump_yaml
 libnetplan.so.1:netplan_state_finish_nm_write

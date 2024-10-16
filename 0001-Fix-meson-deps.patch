@@ -1,0 +1,30 @@
+From ffde655f62e25d35b52e8779a42075686bc94c46 Mon Sep 17 00:00:00 2001
+From: "Brett T. Warden" <brett.t.warden@intel.com>
+Date: Wed, 16 Oct 2024 08:59:39 -0700
+Subject: [PATCH] Fix meson deps
+
+---
+ meson.build | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/meson.build b/meson.build
+index 68c740f968a4..c423026d6091 100644
+--- a/meson.build
++++ b/meson.build
+@@ -23,10 +23,10 @@ systemd_generator_dir = systemd.get_variable(pkgconfig: 'systemdsystemgeneratord
+ bash_completions_dir = completions.get_variable(pkgconfig: 'completionsdir', default_value: '/etc/bash_completion.d')
+ 
+ # Order: Fedora/Mageia/openSUSE || Debian/Ubuntu
+-pyflakes = find_program('pyflakes-3', 'pyflakes3', required: get_option('testing'))
++pyflakes = find_program('pyflakes-3', 'pyflakes3', 'pyflakes', required: get_option('testing'))
+ pycodestyle = find_program('pycodestyle-3', 'pycodestyle', 'pep8', required: get_option('testing'))
+-pytest = find_program('pytest-3', 'pytest3', required: get_option('testing'))  # also requires the pytest-cov plugin
+-pycoverage = find_program('coverage-3', 'python3-coverage', required: get_option('testing'))
++pytest = find_program('pytest-3', 'pytest3', 'pytest', required: get_option('testing'))  # also requires the pytest-cov plugin
++pycoverage = find_program('coverage-3', 'python3-coverage', 'coverage3', required: get_option('testing'))
+ pandoc = find_program('pandoc', required: false)
+ find = find_program('find')
+ 
+-- 
+2.46.2
+

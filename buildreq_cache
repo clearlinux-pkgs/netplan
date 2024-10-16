@@ -1,4 +1,4 @@
-1.0.1
+1.1.1
 bash-completion-dev
 glib-dev
 pandoc
@@ -8,4 +8,5 @@ pkgconfig(glib-2.0)
 pkgconfig(libsystemd)
 pkgconfig(systemd)
 pkgconfig(yaml-0.1)
+pypi(yaml)
 yaml-dev

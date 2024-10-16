@@ -2,4 +2,8 @@
 # picked up automatically. One name per line, no whitespace.
 pypi(cffi)
 pypi(pytest)
+pypi-coverage
+pypi-pycodestyle
+pypi-pyflakes
+pypi-pytest
 python3-dev
