@@ -7,7 +7,7 @@
 #
 Name     : netplan
 Version  : 1.1.1
-Release  : 12
+Release  : 13
 URL      : https://github.com/canonical/netplan/archive/1.1.1/netplan-1.1.1.tar.gz
 Source0  : https://github.com/canonical/netplan/archive/1.1.1/netplan-1.1.1.tar.gz
 Summary  : Network configuration tool using YAML
